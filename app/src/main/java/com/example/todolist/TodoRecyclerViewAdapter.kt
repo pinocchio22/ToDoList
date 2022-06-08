@@ -12,7 +12,7 @@ import com.example.todolist.db.ToDoEntity
  * @created 2022-06-08
  * @desc
  */
-class TodoRecyclerViewAdapter(private val todoList : ArrayList<ToDoEntity>) : RecyclerView.Adapter<TodoRecyclerViewAdapter.MyViewHolder>() {
+class TodoRecyclerViewAdapter(private val todoList : ArrayList<ToDoEntity>, private val listener : OnItemLongClickListener) : RecyclerView.Adapter<TodoRecyclerViewAdapter.MyViewHolder>() {
 
     inner class MyViewHolder(binding : ItemTodoBinding) : RecyclerView.ViewHolder(binding.root) {
         val tv_importance = binding.tvImportance
@@ -35,6 +35,10 @@ class TodoRecyclerViewAdapter(private val todoList : ArrayList<ToDoEntity>) : Re
         }
         holder.tv_importance.text = todoData.importance.toString()
         holder.tv_title.text = todoData.title
+        holder.root.setOnLongClickListener{
+            listener.onLongClick(position)
+            false
+        }
     }
 
     override fun getItemCount(): Int {
