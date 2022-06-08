@@ -16,7 +16,7 @@ class AddTodoActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        var binding = ActivityAddTodoBinding.inflate(layoutInflater)
+        binding = ActivityAddTodoBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         db = AppDatabase.getInstance(this)!!
@@ -48,7 +48,7 @@ class AddTodoActivity : AppCompatActivity() {
                     Toast.makeText(this, "추가되었습니다.", Toast.LENGTH_SHORT).show()
                     finish()
                 }
-            }
+            }.start()
         }
     }
 
